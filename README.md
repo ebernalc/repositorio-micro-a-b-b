@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Integrantes del grupo</title>
 </head>
 <body>
     <h2>Integrantes del grupo:</h2>
