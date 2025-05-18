@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "author": "Bernoulli",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 23.9, "left": -81.8, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -191.7, "left": -63, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -3.2,
+      "left": 293.6,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "board-ssd1306", "id": "oled1", "top": 367.94, "left": 144.23, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": 92.4, "left": -169, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot1",
+      "top": -244.6,
+      "left": -289,
+      "attrs": { "travelLength": "30" }
+    }
+  ],
+  "connections": [
+    [ "esp:3V3", "dht1:VCC", "red", [ "v-220.8", "h-67.5" ] ],
+    [ "esp:GND.1", "dht1:GND", "black", [ "v0" ] ],
+    [ "esp:D15", "dht1:SDA", "green", [ "v-127.77", "h-63.14" ] ],
+    [ "esp:3V3", "lcd1:VCC", "red", [ "h95.7", "v-144.1" ] ],
+    [ "esp:D21", "lcd1:SDA", "magenta", [ "h18.9", "v-39" ] ],
+    [ "esp:D22", "lcd1:SCL", "green", [ "h-10", "v-20" ] ],
+    [ "esp:GND.2", "oled1:GND", "black", [ "v-20", "h10" ] ],
+    [ "esp:3V3", "oled1:VCC", "red", [ "v-48", "h172.35" ] ],
+    [ "esp:D21", "oled1:SDA", "yellow", [ "h0" ] ],
+    [ "esp:D22", "oled1:SCL", "green", [ "h0" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "led1:A", "esp:D2", "red", [ "v0" ] ],
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "lcd1:GND", "black", [ "h258.9", "v-144.1" ] ],
+    [ "pot1:VCC", "esp:3V3", "red", [ "h-19.2", "v240" ] ],
+    [ "pot1:GND", "esp:GND.1", "black", [ "v201.6", "h130" ] ],
+    [ "pot1:SIG", "esp:D34", "green", [ "h0", "v220" ] ]
+  ],
+  "dependencies": {}
+}
