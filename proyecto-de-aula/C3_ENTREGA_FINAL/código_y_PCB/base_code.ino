@@ -6,7 +6,7 @@
 
 #define RST_PIN         22 //Pin del reset.
 #define SS_PIN          5  //Pin del slave select (SDA en el RC522).
-#define RELAY_PIN       2  //Pin IN del relé.
+#define RELAY_PIN        2  //Pin IN del relé.
 #define EEPROM_SIZE     10 //Tamaño de memoria 10 bytes. 
 
 MFRC522 mfrc522(SS_PIN, RST_PIN); //Constructor de clase definido en la libreria, para inicializar el objeto con los valores necesarios. 
@@ -50,7 +50,6 @@ void gestionarSerial() {
     entrada.trim();
     char opcion = entrada.charAt(0);
 
-    //Selecionar si permitir o bloquear tarjeta.
     if (opcion == '1' || opcion == '2') {
       bool permitir = (opcion == '1');
       Serial.println(permitir ? "Seleccionado: Permitir acceso" : "Seleccionado: Bloquear acceso");
@@ -63,14 +62,14 @@ void gestionarSerial() {
         Serial.print(" - Estado: ");
         Serial.println(accessGranted[i] ? "PERMITIDO" : "BLOQUEADO");
       }
-    //Selecionar tarjeta a bloquear o permitir.
+
       Serial.println("Ingrese el número de tarjeta a modificar (1-10):");
       while (!Serial.available());
       String seleccionStr = Serial.readStringUntil('\n');
       seleccionStr.trim();
       int seleccion = seleccionStr.toInt();
       while (Serial.available()) Serial.read();
-    //Guarda el cambio de acceso
+
       if (seleccion >= 1 && seleccion <= 10) {
         int index = seleccion - 1;
         accessGranted[index] = permitir;
@@ -160,8 +159,8 @@ void loop() {
     Serial.println("UID NO REGISTRADO");
   }
 
-  mfrc522.PICC_HaltA();       // Detiene comunicación con tarjeta.
-  mfrc522.PCD_StopCrypto1();  // Reinicia el lector RFID.
-  mostrarMenu();              // Mostrar menú tras lectura.
+  mfrc522.PICC_HaltA();       // Detiene comunicación con tarjeta
+  mfrc522.PCD_StopCrypto1();  // Reinicia el lector RFID
+  mostrarMenu();              // Mostrar menú tras lectura
 }
 
